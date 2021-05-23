@@ -35,6 +35,4 @@ async def handle_city(bot: Bot, event: Event, state: T_State):
             str_s = "图片未识别"
         else:
             str_s = name[0]+name[1]+name[2]+','+name[3]
-    with open("result.txt", 'a') as f:
-        f.writelines(str_s+'\n')
     await weather.reject(str_s)
