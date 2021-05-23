@@ -4,12 +4,13 @@ from nonebot.typing import T_State
 from nonebot.adapters import Bot, Event
 import requests
 import test
-weather = on_command("s", priority=5, rule=to_me(),  block=True)
+weather = on_command("", priority=5, rule=to_me(),  block=True)
 
 
 @weather.handle()
 async def handle_first_receive(bot: Bot, event: Event, state: T_State):
     args = str(event.get_message()).strip()  # 首次发送命令时跟随的参数，例：/天气 上海，则args为上海
+    print(args)
     if args:
         state["city"] = args  # 如果用户发送了参数则直接赋值
 
@@ -25,6 +26,7 @@ async def handle_city(bot: Bot, event: Event, state: T_State):
         f.write(response.content)
     name = test.record("image.png")
     str_s = ""
+
     if "你已经提交过啦，不要重复提交嗷！" in name:
         print(1)
         str_s = "你已经提交过啦，不要重复提交嗷！"
