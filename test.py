@@ -42,10 +42,15 @@ def record(path):
         # print(lines)
     with open("students.txt", "w", encoding="utf-8") as f_w:
         for line in lines:
-            if name[0] in line:
-                name[3] = "消息已经收到啦"
-                strs = name[0] + name[1] + name[2] + ',' + name[3]
-                f_w.write(strs)
-            else:
+            if len(line) > 15:
+                strs = "你已经提交过啦，不要重复提交嗷！"
+                name.append(strs)
                 f_w.write(line)
+            else:
+                if name[0] in line:
+                    name[3] = "消息已经收到啦"
+                    strs = name[0] + name[1] + name[2] + ',' + name[3]
+                    f_w.write(strs+'\n')
+                else:
+                    f_w.write(line)
     return name
